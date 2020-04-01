@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion versions.sdk.compile
+    buildToolsVersion versions.sdk.tools
+
+    defaultConfig {
+        minSdkVersion versions.sdk.min
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFile "proguard-rules.pro"
+        }
+    }
+}
+
+
+dependencies {
+    api project(":chilicountrycodes")
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$versions.coroutines"
+}

@@ -1,3 +1,4 @@
 rootProject.name='Country codes sample'
 include ':sample'
 include ':chilicountrycodes'
+include ':chilicountrycodes-rx2'
