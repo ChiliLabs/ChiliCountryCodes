@@ -1,7 +1,6 @@
 package lv.chi.chilicountrycodes.providers
 
 import android.content.res.AssetManager
-import androidx.annotation.WorkerThread
 import lv.chi.chilicountrycodes.Country
 import lv.chi.chilicountrycodes.isoCodeToEmoji
 
@@ -10,13 +9,11 @@ internal class AssetCountryProvider(
     private val assetManager: AssetManager
 ) : CountryListProvider {
 
-    @WorkerThread
     override fun getRawCountries() = assetManager
         .open(countryFileName)
         .bufferedReader()
         .useLines { it.toList() }
 
-    @WorkerThread
     override fun mapRawCountry(raw: String): Country {
         val (countryCode, isoCode, countryName) = raw.split(";")
         return Country(
