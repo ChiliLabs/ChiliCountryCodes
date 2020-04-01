@@ -5,4 +5,9 @@ data class Country(
     val phoneCode: String,
     val flagEmoji: String,
     val isoCode: String
-)
+) {
+
+    companion object {
+        val UNDEFINED = Country("", "", "", "")
+    }
+}
