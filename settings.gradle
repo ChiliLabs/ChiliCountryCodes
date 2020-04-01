@@ -1,0 +1,3 @@
+rootProject.name='Country codes sample'
+include ':sample'
+include ':chilicountrycodes'
