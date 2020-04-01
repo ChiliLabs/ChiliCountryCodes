@@ -16,6 +16,7 @@ internal class AssetCountryProvider(
         .bufferedReader()
         .useLines { it.toList() }
 
+    @WorkerThread
     override fun mapRawCountry(raw: String): Country {
         val (countryCode, isoCode, countryName) = raw.split(";")
         return Country(

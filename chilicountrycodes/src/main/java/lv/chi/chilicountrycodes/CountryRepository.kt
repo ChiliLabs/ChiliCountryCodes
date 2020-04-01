@@ -1,46 +1,63 @@
 package lv.chi.chilicountrycodes
 
-import android.content.res.AssetManager
-import android.util.Log
-import androidx.lifecycle.liveData
+import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import lv.chi.chilicountrycodes.providers.AssetCountryProvider
 import lv.chi.chilicountrycodes.providers.CountryListProvider
 
 class CountryRepository(
-    private val defaultCountry: Country = Country.UNDEFINED,
-    private val provider: CountryListProvider
+    private val appContext: Context,
+    private val provider: CountryListProvider,
+    val defaultCountry: Country = Country.UNDEFINED
 ) {
 
-    private var cachedList: List<Country> = emptyList()
+    private var cachedCountriesList: List<Country> = emptyList()
 
-    fun countries() = liveData {
-        val result = if (cachedList.isNotEmpty()) {
-            Log.wtf("!!!!!", "Using cached countries")
-            cachedList
-        } else {
-            Log.wtf("!!!!!", "Loading countries")
-            withContext(Dispatchers.IO) {
-                provider.getRawCountries().map { provider.mapRawCountry(it) }
-            }
-        }
-        emit(result)
+    fun countries(forceReload: Boolean = false, onResult: (List<Country>) -> Unit) = launchAsCancellable(Dispatchers.Main) {
+        onResult(getCountries(forceReload))
     }
 
-    fun detectCountry(defaultIso: String) = liveData {
-        emit(defaultCountry)
+    fun detectCountry(onResult: (Country) -> Unit) = launchAsCancellable(Dispatchers.Default) {
+        var result = defaultCountry
+
+        simCountryIsoCode(appContext)
+            ?.let { findCountry(getCountries(false), it) }
+            ?.also { result = it }
+
+        withContext(Dispatchers.Main) {
+            onResult(result)
+        }
+    }
+
+    fun countryWithIsoCode(code: String, onResult: (Country) -> Unit) = launchAsCancellable(Dispatchers.Main) {
+        var result = defaultCountry
+        findCountry(getCountries(false), code)?.let { result = it }
+        onResult(result)
+    }
+
+    private suspend fun getCountries(forceReload: Boolean): List<Country> = withContext(Dispatchers.IO) {
+        if (forceReload || cachedCountriesList.isEmpty()) {
+            val loadedCountries = provider.getRawCountries().map { provider.mapRawCountry(it) }
+            cachedCountriesList = loadedCountries
+        }
+        cachedCountriesList
+    }
+
+    private suspend fun findCountry(countries: List<Country>, code: String): Country? = withContext(Dispatchers.Default) {
+        countries.firstOrNull { code == it.isoCode }
     }
 
     companion object {
 
         fun fromAssets(
-            assetManager: AssetManager,
+            context: Context,
             countryFileName: String = "countries.txt",
             defaultCountry: Country = Country.UNDEFINED
         ) = CountryRepository(
-            defaultCountry,
-            AssetCountryProvider(countryFileName, assetManager)
+            context.applicationContext,
+            AssetCountryProvider(countryFileName, context.applicationContext.assets),
+            defaultCountry
         )
     }
 }
