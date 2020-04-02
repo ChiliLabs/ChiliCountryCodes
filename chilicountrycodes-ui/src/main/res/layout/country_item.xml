@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:background="?attr/selectableItemBackground"
-          android:gravity="start"
-          android:padding="16dp"
-          style="@style/Body1"
-          tools:text="🇱🇻 +371"/>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="start"
+    android:lineSpacingMultiplier="1.15"
+    android:padding="16dp"
+    android:textAppearance="?countryCodePicker_ItemTextAppearance"
+    tools:text="🇱🇻 +371" />

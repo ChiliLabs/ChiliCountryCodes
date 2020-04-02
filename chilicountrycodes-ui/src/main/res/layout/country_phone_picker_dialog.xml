@@ -14,8 +14,9 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="40dp"
         android:elevation="8dp"
-        app:cardBackgroundColor="?android:colorBackground"
-        app:cardCornerRadius="2dp">
+        app:cardBackgroundColor="?countryCodePicker_BackgroundColor"
+        app:cardCornerRadius="?countryCodePicker_CornerRadius"
+        app:cardElevation="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,27 +29,28 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_search"
+                android:drawableStart="?countryCodePicker_SearchIcon"
                 android:drawablePadding="8dp"
-                android:hint="@string/phone_code_picker_hint"
+                android:hint="?countryCodePicker_TitleText"
                 android:imeOptions="actionDone"
                 android:inputType="text"
-                android:textAppearance="@style/Text.Body1"
-                android:textColor="@color/textPrimary"
-                android:textColorHint="@color/textSecondary"
+                android:textAppearance="?countryCodePicker_HintTextAppearance"
+                android:textColor="?countryCodePicker_SearchTextColor"
+                android:textColorHint="?countryCodePicker_HintTextColor"
+                android:theme="@style/CountyCodeAccentEditTextTheme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_picker_title" />
 
             <TextView
                 android:id="@+id/country_picker_title"
-                style="@style/Headline2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/phone_code_picker_title"
+                android:text="?countryCodePicker_HintText"
+                android:textAppearance="?countryCodePicker_TitleTextAppearance"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

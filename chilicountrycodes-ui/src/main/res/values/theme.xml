@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Text.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:letterSpacing">0.025</item>
-        <item name="android:textColor">@color/textPrimary</item>
+    <attr name="countryCodePicker_BackgroundColor" format="reference|color" />
+    <attr name="countryCodePicker_SearchTextColor" format="reference|color" />
+    <attr name="countryCodePicker_HintTextColor" format="reference|color" />
+    <attr name="countryCodePicker_AccentColor" format="reference|color" />
+
+    <attr name="countryCodePicker_TitleTextAppearance" format="reference" />
+    <attr name="countryCodePicker_HintTextAppearance" format="reference" />
+    <attr name="countryCodePicker_ItemTextAppearance" format="reference" />
+
+    <attr name="countryCodePicker_TitleText" format="reference|string" />
+    <attr name="countryCodePicker_HintText" format="reference|string" />
+
+    <attr name="countryCodePicker_SearchIcon" format="reference" />
+    <attr name="countryCodePicker_CornerRadius" format="reference|dimension" />
+
+    <style name="CountryCodePicker.Base" parent="Theme.MaterialComponents.Light">
+        <item name="countryCodePicker_BackgroundColor">?colorBackgroundFloating</item>
+        <item name="countryCodePicker_SearchTextColor">@color/textPrimary</item>
+        <item name="countryCodePicker_HintTextColor">@color/textSecondary</item>
+        <item name="countryCodePicker_AccentColor">@color/accentColor</item>
+        <item name="countryCodePicker_TitleTextAppearance">?textAppearanceHeadline6</item>
+        <item name="countryCodePicker_HintTextAppearance">?textAppearanceBody2</item>
+        <item name="countryCodePicker_ItemTextAppearance">?textAppearanceBody1</item>
+        <item name="countryCodePicker_TitleText">@string/phone_code_picker_title</item>
+        <item name="countryCodePicker_HintText">@string/phone_code_picker_hint</item>
+        <item name="countryCodePicker_SearchIcon">@drawable/ic_search</item>
+        <item name="countryCodePicker_CornerRadius">4dp</item>
+        <item name="colorAccent">?countryCodePicker_AccentColor</item>
     </style>
 
-    <style name="Body1" parent="Widget.AppCompat.TextView">
-        <item name="android:textAppearance">@style/Text.Body1</item>
-        <item name="android:lineSpacingMultiplier">1.28</item>
-    </style>
+        <style name="CountyCodeAccentEditTextTheme">
 
-    <style name="Text.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
-        <item name="fontFamily">sans-serif</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:letterSpacing">0.007</item>
-        <item name="android:textColor">@color/textPrimary</item>
-    </style>
-
-    <style name="Headline2" parent="Widget.AppCompat.TextView">
-        <item name="android:textAppearance">@style/Text.Headline2</item>
-        <item name="android:lineSpacingMultiplier">1.07</item>
-    </style>
-
+        </style>
 
 </resources>

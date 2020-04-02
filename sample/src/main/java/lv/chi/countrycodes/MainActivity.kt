@@ -1,70 +1,90 @@
 package lv.chi.countrycodes
 
 import android.os.Bundle
-import android.os.StrictMode
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import io.reactivex.disposables.CompositeDisposable
 import lv.chi.chilicountrycodes.Country
 import lv.chi.chilicountrycodes.CountryRepository
-import lv.chi.chilicountrycodes.ui.CountryCodePickerDialog
+import lv.chi.chilicountrycodes.rx.RxCountryRepository
+import lv.chi.chilicountrycodes.ui.CountryCodePicker
 import lv.chi.countrycodes.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity(), CountryCodePickerDialog.Listener {
-
-    private val disposable = CompositeDisposable()
+class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        StrictMode.setThreadPolicy(
-            StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .penaltyDeath()
-                .build()
-        )
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val r = CountryRepository.fromAssets(this)
 
+        uiWrapperUsageExample(r)
+
+        coroutinesUsageExample(r)
+
+        rxUsageExample(r)
+    }
+
+    // UI wrapper usage example
+    // ======================================================================================
+    // ======================================================================================
+    private fun uiWrapperUsageExample(repository: CountryRepository) {
+        CountryCodePicker.setCustomRepository(repository)
+
         binding.sampleButton.setOnClickListener {
-
-            CountryCodePickerDialog.show(supportFragmentManager, r)
-
+            CountryCodePicker.showDialog(supportFragmentManager, R.style.CustomCodePickerTheme)
         }
-
-
-//        val d = RxCountryRepository(r)
-//        disposable.add(d.countries().subscribe({
-//            it.shuffled().take(5).map { c -> Log.wtf("!!!!!!", c.toString()) }
-//        }, {}))
-
-//        lifecycleScope.launchWhenCreated {
-//            val cbCountries = d.countries()
-//            Log.wtf("!!!!!!", "---------")
-//            cbCountries.shuffled().take(5).map { c -> Log.wtf("!!!!!!", c.toString()) }
-//        }
-//
-//        lifecycleScope.launchWhenCreated {
-//            val cbCountries = d.detectCountry()
-//            Log.wtf("!!!!!!", "---------")
-//            Log.wtf("!!!!!!", "detected: $cbCountries")
-//        }
-//
-//        lifecycleScope.launchWhenCreated {
-//            val cbCountries = d.countryWithIsoCode("lv")
-//            Log.wtf("!!!!!!", "---------")
-//            Log.wtf("!!!!!!", "latvia: $cbCountries")
-//        }
     }
 
     override fun onCountryChosen(country: Country) {
         binding.sampleSelected.text = "Selected: ${country.combinedName}"
+    }
+
+    // Coroutine wrapper usage example
+    // ======================================================================================
+    // ======================================================================================
+
+    private fun coroutinesUsageExample(repository: CountryRepository) {
+        lifecycleScope.launchWhenCreated {
+            repository.countries()
+                .shuffled()
+                .take(5)
+                .map { c -> Log.d("CoroutinesExample", c.toString()) }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            repository.detectCountry()
+                .let { Log.d("CoroutinesExample", "Detected: $it") }
+        }
+
+        lifecycleScope.launchWhenCreated {
+            repository.countryWithIsoCode("lv")
+                .let { Log.d("CoroutinesExample", "Latvian country code: ${it.phoneCode}") }
+        }
+    }
+
+    // Rx2 wrapper usage example
+    // ======================================================================================
+    // ======================================================================================
+    private val disposable = CompositeDisposable()
+
+    private fun rxUsageExample(customRepository: CountryRepository) {
+        val rxRepository = RxCountryRepository(customRepository)
+
+        disposable.add(rxRepository.countries().subscribe({
+            it.shuffled().take(5).map { c -> Log.d("RxExample", c.toString()) }
+        }, {}))
+        disposable.add(rxRepository.detectCountry().subscribe({
+            Log.d("RxExample", "Detected: $it")
+        }, {}))
+        disposable.add(rxRepository.countryWithIsoCode("lv").subscribe({
+            Log.d("RxExample", "Latvian country code: ${it.phoneCode}")
+        }, {}))
     }
 
     override fun onDestroy() {
