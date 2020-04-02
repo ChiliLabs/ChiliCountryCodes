@@ -17,7 +17,7 @@ internal class AssetCountryProvider(
     override fun mapRawCountry(raw: String): Country {
         val (countryCode, isoCode, countryName) = raw.split(";")
         return Country(
-            fullName = countryName,
+            countryName = countryName,
             phoneCode = countryCode,
             isoCode = isoCode,
             flagEmoji = isoCodeToEmoji(isoCode)

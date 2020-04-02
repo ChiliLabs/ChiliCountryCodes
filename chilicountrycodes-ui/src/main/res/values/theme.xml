@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/textPrimary</item>
+    </style>
+
+    <style name="Body1" parent="Widget.AppCompat.TextView">
+        <item name="android:textAppearance">@style/Text.Body1</item>
+        <item name="android:lineSpacingMultiplier">1.28</item>
+    </style>
+
+    <style name="Text.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.007</item>
+        <item name="android:textColor">@color/textPrimary</item>
+    </style>
+
+    <style name="Headline2" parent="Widget.AppCompat.TextView">
+        <item name="android:textAppearance">@style/Text.Headline2</item>
+        <item name="android:lineSpacingMultiplier">1.07</item>
+    </style>
+
+
+</resources>
