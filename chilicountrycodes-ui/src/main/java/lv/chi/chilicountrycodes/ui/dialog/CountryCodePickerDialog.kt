@@ -1,4 +1,4 @@
-package lv.chi.chilicountrycodes.ui
+package lv.chi.chilicountrycodes.ui.dialog
 
 import android.content.Context
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.view.*
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import lv.chi.chilicountrycodes.ui.CountryCodePicker
+import lv.chi.chilicountrycodes.ui.R
 import lv.chi.chilicountrycodes.ui.databinding.CountryPhonePickerDialogBinding
-import lv.chi.chilicountrycodes.ui.list.CountryAdapter
 
 internal class CountryCodePickerDialog : DialogFragment() {
 
@@ -90,7 +91,10 @@ internal class CountryCodePickerDialog : DialogFragment() {
         super.onDestroyView()
     }
 
-    private fun themeArg() = requireArguments().getInt(ARG_THEME, R.style.CountryCodePicker_Base)
+    private fun themeArg() = requireArguments().getInt(
+        ARG_THEME,
+        R.style.CountryCodePicker_Base
+    )
 
     companion object {
         internal const val TAG = "lv.chi.chilicountrycodes.ui.dialog"

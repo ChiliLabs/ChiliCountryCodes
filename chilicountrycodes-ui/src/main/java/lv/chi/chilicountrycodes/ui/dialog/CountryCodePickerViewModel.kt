@@ -1,4 +1,4 @@
-package lv.chi.chilicountrycodes.ui
+package lv.chi.chilicountrycodes.ui.dialog
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
@@ -7,7 +7,7 @@ import lv.chi.chilicountrycodes.Country
 import lv.chi.chilicountrycodes.CountryRepository
 
 
-class CountryCodePickerViewModel(
+internal class CountryCodePickerViewModel(
     private val countryRepository: CountryRepository
 ) : ViewModel() {
 
@@ -35,11 +35,9 @@ class CountryCodePickerViewModel(
     }
 
     class Factory(private val repo: CountryRepository) : ViewModelProvider.NewInstanceFactory() {
-
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return CountryCodePickerViewModel(repo) as (T)
         }
-
     }
 }

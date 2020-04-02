@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
         binding.sampleSelected.text = "Selected: ${country.combinedName}"
     }
 
-    // Coroutine wrapper usage example
+    // Coroutine usage example
     // ======================================================================================
     // ======================================================================================
 
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
             Log.d("RxExample", "Detected: $it")
         }, {}))
         disposable.add(rxRepository.countryWithIsoCode("lv").subscribe({
-            Log.d("RxExample", "Latvian country code: ${it.phoneCode}")
+            Log.d("RxExample", "Latvian country code: ${it}")
         }, {}))
     }
 

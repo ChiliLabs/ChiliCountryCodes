@@ -1,4 +1,4 @@
-package lv.chi.chilicountrycodes.ui.list
+package lv.chi.chilicountrycodes.ui.dialog
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +9,13 @@ import lv.chi.chilicountrycodes.Country
 import lv.chi.chilicountrycodes.ui.R
 
 
-class CountryAdapter(
+internal class CountryAdapter(
     private val onCountryClicked: (Country) -> Unit
 ) : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
     private var countries: List<Country> = emptyList()
 
-    fun setCountries(countries: List<Country>) {
+    internal fun setCountries(countries: List<Country>) {
         this.countries = countries
         notifyDataSetChanged()
     }

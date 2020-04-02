@@ -2,7 +2,6 @@ package lv.chi.chilicountrycodes.providers
 
 import android.content.res.AssetManager
 import lv.chi.chilicountrycodes.Country
-import lv.chi.chilicountrycodes.isoCodeToEmoji
 
 internal class AssetCountryProvider(
     private val countryFileName: String,
@@ -17,10 +16,9 @@ internal class AssetCountryProvider(
     override fun mapRawCountry(raw: String): Country {
         val (countryCode, isoCode, countryName) = raw.split(";")
         return Country(
-            countryName = countryName,
-            phoneCode = countryCode,
             isoCode = isoCode,
-            flagEmoji = isoCodeToEmoji(isoCode)
+            phoneCode = countryCode,
+            countryName = countryName
         )
     }
 }
