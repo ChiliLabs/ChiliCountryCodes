@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion versions.sdk.compile
+    buildToolsVersion versions.sdk.tools
+
+    defaultConfig {
+        minSdkVersion versions.sdk.min
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFile "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    api project(":chilicountrycodes")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle"
+
+
+    implementation "com.google.android.material:material:1.2.0-alpha05"
+
+}

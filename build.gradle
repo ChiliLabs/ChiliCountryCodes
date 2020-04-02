@@ -12,7 +12,8 @@ buildscript {
                     tools  : "29.0.2"
             ],
             kotlin    : "1.4-M1",
-            coroutines: "1.3.5"
+            coroutines: "1.3.5",
+            lifecycle: "2.2.0"
     ]
 
     repositories {
