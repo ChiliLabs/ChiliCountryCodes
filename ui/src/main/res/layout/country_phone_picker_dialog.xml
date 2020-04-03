@@ -37,7 +37,6 @@
                 android:textAppearance="?countryCodePicker_HintTextAppearance"
                 android:textColor="?countryCodePicker_SearchTextColor"
                 android:textColorHint="?countryCodePicker_HintTextColor"
-                android:theme="@style/CountyCodeAccentEditTextTheme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_picker_title" />

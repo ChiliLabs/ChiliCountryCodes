@@ -24,15 +24,11 @@
         <item name="countryCodePicker_TitleTextAppearance">?textAppearanceHeadline6</item>
         <item name="countryCodePicker_HintTextAppearance">?textAppearanceBody2</item>
         <item name="countryCodePicker_ItemTextAppearance">?textAppearanceBody1</item>
-        <item name="countryCodePicker_TitleText">@string/phone_code_picker_title</item>
-        <item name="countryCodePicker_HintText">@string/phone_code_picker_hint</item>
+        <item name="countryCodePicker_TitleText">@string/picker_title</item>
+        <item name="countryCodePicker_HintText">@string/picker_hint</item>
         <item name="countryCodePicker_SearchIcon">@drawable/ic_search</item>
         <item name="countryCodePicker_CornerRadius">4dp</item>
         <item name="colorAccent">?countryCodePicker_AccentColor</item>
     </style>
-
-        <style name="CountyCodeAccentEditTextTheme">
-
-        </style>
 
 </resources>
