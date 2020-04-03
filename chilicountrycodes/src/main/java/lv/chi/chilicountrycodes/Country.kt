@@ -18,7 +18,7 @@ data class Country(
     /**
      * Full country name
      */
-    val countryName: String,
+    val countryName: String
 ) {
 
     /**

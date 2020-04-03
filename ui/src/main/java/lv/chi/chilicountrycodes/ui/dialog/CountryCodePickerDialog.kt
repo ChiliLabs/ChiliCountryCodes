@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import lv.chi.chilicountrycodes.ui.CountryCodePicker
 import lv.chi.chilicountrycodes.ui.R
@@ -58,9 +59,9 @@ internal class CountryCodePickerDialog : DialogFragment() {
         viewBinding?.countryPickerSearch?.doOnTextChanged { text, _, _, _ ->
             vm.setQuery(text.toString().ifBlank { null })
         }
-        vm.getCountries().observe(viewLifecycleOwner) { countries ->
+        vm.getCountries().observe(viewLifecycleOwner, Observer { countries ->
             countries?.let { adapter.setCountries(it) }
-        }
+        })
         vm.loadCountries()
     }
 
