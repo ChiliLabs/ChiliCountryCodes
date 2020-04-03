@@ -11,7 +11,34 @@ Made with ❤️ by [Chili Labs](https://chililabs.io).
 
 ## Setup
 
-Work in progress
+Add JitPack to repositories
+
+```groovy
+allprojects {
+  repositories {
+    // ..
+    maven { url "https://jitpack.io" }
+    // ..
+  }
+}
+```
+
+[![](https://jitpack.io/v/ChiliLabs/ChiliCountryCodes.svg)](https://jitpack.io/#ChiliLabs/ChiliCountryCodes)
+
+Add one of these dependency
+
+```groovy
+dependencies {
+    // Only the repository witout any extensions
+    implementation 'com.github.ChiliLabs.ChiliCountryCodes:<version>'
+
+    // For extension base repository is provided as transitive dependency
+    // Repository + Rx2 wrapper
+    implementation 'com.github.ChiliLabs.ChiliCountryCodes:rx2:<version>'
+    // Repository + UI extension
+    implementation 'com.github.ChiliLabs.ChiliCountryCodes:ui:<version>'
+}
+```
 
 ## Usage
 
