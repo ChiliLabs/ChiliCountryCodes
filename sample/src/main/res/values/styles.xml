@@ -9,10 +9,11 @@
     </style>
 
     <style name="CustomCodePickerTheme" parent="CountryCodePicker.Base">
+        <item name="countryCodePicker_BackgroundColor">#B3A3D1</item>
         <item name="countryCodePicker_AccentColor">#E91E63</item>
         <item name="countryCodePicker_TitleTextAppearance">?textAppearanceHeadline4</item>
         <item name="countryCodePicker_HintTextAppearance">?textAppearanceCaption</item>
         <item name="countryCodePicker_ItemTextAppearance">?textAppearanceBody1</item>
-        <item name="countryCodePicker_CornerRadius">8dp</item>
+        <item name="countryCodePicker_CornerRadius">16dp</item>
     </style>
 </resources>

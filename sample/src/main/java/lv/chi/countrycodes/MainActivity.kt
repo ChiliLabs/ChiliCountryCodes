@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
         CountryCodePicker.setCustomRepository(repository)
 
         binding.sampleButton.setOnClickListener {
+            CountryCodePicker.showDialog(supportFragmentManager)
+        }
+        binding.customSampleButton.setOnClickListener {
             CountryCodePicker.showDialog(supportFragmentManager, R.style.CustomCodePickerTheme)
         }
     }
