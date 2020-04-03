@@ -8,24 +8,17 @@ import lv.chi.chilicountrycodes.Country
  *
  * ```
  * class SupportedCountryListProvider : CountryListProvider {
- *   override fun getRawCountries() = listOf(
- *     "LT;370;Lithuania",
- *     "LV;371;Latvia",
- *     "EE;372;Estonia"
+ *   override fun getCountries() = listOf(
+ *     Country("LT", "370", "Lithuania"),
+ *     Country("LV", "371", "Latvia"),
+ *     Country("EE", "372", "Estonia")
  *   )
- *
- *   override fun mapRawCountry(raw: String): Country {
- *      val (iso, code, name) = raw.split(";")
- *      return Country(iso, code, name)
- *   }
  * }
  * ```
  *
- * Both methods are called on background thread (IO coroutine dispatcher).
+ * Provider is called on background thread (IO coroutine dispatcher).
  */
 interface CountryListProvider {
 
-    fun getRawCountries(): List<String>
-
-    fun mapRawCountry(raw: String): Country
+    fun getCountries(): List<Country>
 }

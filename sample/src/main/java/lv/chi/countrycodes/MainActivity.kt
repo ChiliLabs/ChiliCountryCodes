@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import io.reactivex.disposables.CompositeDisposable
 import lv.chi.chilicountrycodes.Country
 import lv.chi.chilicountrycodes.CountryRepository
+import lv.chi.chilicountrycodes.providers.CountryListProvider
 import lv.chi.chilicountrycodes.rx.RxCountryRepository
 import lv.chi.chilicountrycodes.ui.CountryCodePicker
 import lv.chi.countrycodes.databinding.ActivityMainBinding
@@ -92,5 +93,25 @@ class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
             disposable.dispose()
         }
         super.onDestroy()
+    }
+
+    // Custom repository creation example
+    // ======================================================================================
+    // ======================================================================================
+
+    private fun customRepositoryExample() {
+        val customFileRepository = CountryRepository(
+            appContext = applicationContext,
+            provider = SupportedCountryListProvider(),
+            defaultCountry = Country("LV", "371", "Latvia")
+        )
+    }
+
+    class SupportedCountryListProvider : CountryListProvider {
+        override fun getCountries() = listOf(
+            Country("LT", "370", "Lithuania"),
+            Country("LV", "371", "Latvia"),
+            Country("EE", "372", "Estonia")
+        )
     }
 }

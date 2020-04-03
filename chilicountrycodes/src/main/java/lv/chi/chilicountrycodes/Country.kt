@@ -19,8 +19,7 @@ data class Country(
      * Full country name
      */
     val countryName: String,
-
-    ) {
+) {
 
     /**
      * Formatted string that can be displayed in UI.
@@ -37,7 +36,9 @@ data class Country(
     val flagEmoji: String
 
     init {
-        flagEmoji = isoCodeToEmoji(isoCode)
+        flagEmoji = if (isoCode.isNotBlank()) {
+            isoCodeToEmoji(isoCode)
+        } else ""
 
         val fullName = "$flagEmoji +$phoneCode $countryName"
 

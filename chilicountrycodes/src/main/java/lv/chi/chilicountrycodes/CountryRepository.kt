@@ -31,7 +31,7 @@ class CountryRepository(
     suspend fun countries(forceReload: Boolean = false) = withContext(Dispatchers.IO) {
         if (forceReload || cachedCountriesList.isEmpty()) {
             Log.i("CountryRepository", "Loading country list from provider")
-            val loadedCountries = provider.getRawCountries().map { provider.mapRawCountry(it) }
+            val loadedCountries = provider.getCountries()
             cachedCountriesList = loadedCountries
         }
         cachedCountriesList
@@ -64,6 +64,18 @@ class CountryRepository(
     }
 
     companion object {
+
+        /**
+         * Create default repository with bundled file.
+         *
+         * Notes on custom file formatting:
+         * Default file uses "phone_code;2_letter_iso;country_name" format (e.g. 371;LV;Latvia).
+         * If custom filed does not adhere to this standard - custom `CountryListProvider` must be implemented
+         *
+         * @param context - application context to access assets
+         * @param countryFileName - name of the country list file to use.
+         * @param defaultCountry - country to be returned in case of lookup failure
+         */
         fun fromAssets(
             context: Context,
             countryFileName: String = "countries.txt",

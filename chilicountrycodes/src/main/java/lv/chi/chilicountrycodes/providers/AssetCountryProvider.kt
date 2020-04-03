@@ -8,17 +8,17 @@ internal class AssetCountryProvider(
     private val assetManager: AssetManager
 ) : CountryListProvider {
 
-    override fun getRawCountries() = assetManager
+    override fun getCountries() = assetManager
         .open(countryFileName)
         .bufferedReader()
-        .useLines { it.toList() }
-
-    override fun mapRawCountry(raw: String): Country {
-        val (countryCode, isoCode, countryName) = raw.split(";")
-        return Country(
-            isoCode = isoCode,
-            phoneCode = countryCode,
-            countryName = countryName
-        )
-    }
+        .useLines {
+            it.map { raw ->
+                val (phoneCode, isoCode, countryName) = raw.split(";")
+                Country(
+                    isoCode = isoCode,
+                    phoneCode = phoneCode,
+                    countryName = countryName
+                )
+            }.toList()
+        }
 }

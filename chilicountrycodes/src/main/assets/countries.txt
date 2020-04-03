@@ -220,7 +220,7 @@
 44;GB;United Kingdom;false
 598;UY;Uruguay
 1340;VI;US Virgin Islands
-1;US;USA;false
+1;US;USA
 998;UZ;Uzbekistan
 678;VU;Vanuatu
 58;VE;Venezuela
