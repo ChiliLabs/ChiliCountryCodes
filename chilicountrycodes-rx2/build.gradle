@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.ChiliLabs'
 
 android {
     compileSdkVersion versions.sdk.compile
@@ -7,6 +10,8 @@ android {
 
     defaultConfig {
         minSdkVersion versions.sdk.min
+        versionCode versions.lib.code
+        versionName versions.lib.name
     }
 
     buildTypes {

@@ -9,8 +9,8 @@ android {
         applicationId "lv.chi.countrycodes"
         minSdkVersion versions.sdk.min
         targetSdkVersion versions.sdk.compile
-        versionCode 1
-        versionName "1.0"
+        versionCode versions.lib.code
+        versionName versions.lib.name
     }
 
     buildTypes {
