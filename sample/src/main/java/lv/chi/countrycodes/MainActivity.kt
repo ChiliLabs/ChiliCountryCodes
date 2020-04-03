@@ -77,15 +77,17 @@ class MainActivity : AppCompatActivity(), CountryCodePicker.Listener {
     private fun rxUsageExample(customRepository: CountryRepository) {
         val rxRepository = RxCountryRepository(customRepository)
 
-        disposable.add(rxRepository.countries().subscribe({
-            it.shuffled().take(5).map { c -> Log.d("RxExample", c.toString()) }
-        }, {}))
-        disposable.add(rxRepository.detectCountry().subscribe({
-            Log.d("RxExample", "Detected: $it")
-        }, {}))
-        disposable.add(rxRepository.countryWithIsoCode("lv").subscribe({
-            Log.d("RxExample", "Latvian country code: ${it}")
-        }, {}))
+        rxRepository.countries()
+            .subscribe { list -> list.map { c -> Log.d("RxExample", c.toString()) } }
+            .let { disposable.add(it) }
+
+        rxRepository.detectCountry()
+            .subscribe { detected -> Log.d("RxExample", "Detected: $detected") }
+            .let { disposable.add(it) }
+
+        rxRepository.countryWithIsoCode("lv")
+            .subscribe { country -> Log.d("RxExample", "Found: $country") }
+            .let { disposable.add(it) }
     }
 
     override fun onDestroy() {
