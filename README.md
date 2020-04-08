@@ -7,6 +7,8 @@ Country phone code repository, detection and lookup library.
 * Optional Rx2 wrapper for seamless integration
 * Optional UI extension for quick country phone code selection
 
+![](img/example_600.gif)
+
 Made with ❤️ by [Chili Labs](https://chililabs.io).
 
 ## Setup
@@ -115,8 +117,6 @@ if (!disposable.isDisposed) {
 ```
 
 ## Picker dialog extension
-
-![](img/dialog_screenshot.png)
 
 ```kotlin
 // Picker will create its own repository if custom one is not provided.
