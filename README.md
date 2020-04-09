@@ -7,7 +7,7 @@ Country phone code repository, detection and lookup library.
 * Optional Rx2 wrapper for seamless integration
 * Optional UI extension for quick country phone code selection
 
-![](img/example_600.gif)
+<img src="img/example.gif" width="337" height="600">
 
 Made with ❤️ by [Chili Labs](https://chililabs.io).
 
